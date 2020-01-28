@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //---1
+        function getStr(str, arraySymb) {
+            var strArray = Array.from(str.toLowerCase());///в массив с нижним регистром
+            var result = '';
+            //console.log(strArray);
+            //console.log(strArray.length);
+            //console.log(arraySymb.length);
+            for (a = 0; a < strArray.length; a++) {//первый цикл по строке-массиву
+                for (b = 0; b < arraySymb.length; b++) {//второй цикл по массиву с символами
+                    if (strArray[a] === arraySymb[b]) {
+                        strArray.splice(a, 1);//удаляем из строки-массива совпавшие символы
+                    } else {
+                        continue;// прерываем итерацию 
+                    }
+                }
+            }
+            result = strArray.join('');//в строку
+            return result;
+        }
+
+        alert(getStr('Hello', ['o']));
+
+        //---2---Находим и удаляем подстроки 
+        //---(глобальный поиск с игнорированием регистра)
+
+
+        // function foo(str, arraySymb) {
+        //     var reArray = arraySymb.join("//gi");
+        //     var resStr = str.replace(reArray, ")))");
+        //     // console.log(str);
+        //     console.log(reArray);
+        //     return resStr;
+        // }
+
+        // alert(foo("Hello", ["l"]));
+
+
+    </script>
+</body>
+
+</html>
