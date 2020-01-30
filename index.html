@@ -10,42 +10,32 @@
 
 <body>
     <script>
-        //---1
-        function getStr(str, arraySymb) {
-            var strArray = Array.from(str.toLowerCase());///в массив с нижним регистром
-            var result = '';
-            //console.log(strArray);
-            //console.log(strArray.length);
-            //console.log(arraySymb.length);
-            for (a = 0; a < strArray.length; a++) {//первый цикл по строке-массиву
-                for (b = 0; b < arraySymb.length; b++) {//второй цикл по массиву с символами
-                    if (strArray[a] === arraySymb[b]) {
-                        strArray.splice(a, 1);//удаляем из строки-массива совпавшие символы
+        
+       function foo(str, array) {
+            var myStr = str.toLowerCase();//нижний регистр
+            var result = "";//строка для результата
+            for (var i = 0; i < myStr.length; i++) {//цикл по строке
+                for (var j = 0; j < array.length; j++) {//цикл по массиву
+                    if ((myStr[i]) === array[j]) {//если символы совподают -
+                        //передаем строку и индекс совпавшего символа
+                        myStr = remove_char(myStr, i)//получаем результат от функции remove_char
                     } else {
-                        continue;// прерываем итерацию 
+                        continue;
                     }
                 }
             }
-            result = strArray.join('');//в строку
+            result = myStr;
             return result;
         }
+        function remove_char(str, char) {//функция выводит символы которых нет во втором аргументе
+            var past1 = str.slice(0, char);//в переменную передаем индексы символов от 0 - 
+            //до символа который находится перед совпавшим, включительно
+            var past2 = str.slice(++char, str.length);//в переменную передаем индексы символов от совпавшего + 1 до конца строки -
+            return (past1 + past2);//возвращает начало и конец строки за исключением совпавших символов
 
-        alert(getStr('Hello', ['o']));
+        }
 
-        //---2---Находим и удаляем подстроки 
-        //---(глобальный поиск с игнорированием регистра)
-
-
-        // function foo(str, arraySymb) {
-        //     var reArray = arraySymb.join("//gi");
-        //     var resStr = str.replace(reArray, "");
-        //     // console.log(str);
-        //     console.log(reArray);
-        //     return resStr;
-        // }
-
-        // alert(foo("Hello", ["l"]));
-
+        console.log(foo("Hello", ["o"]));
 
     </script>
 </body>
