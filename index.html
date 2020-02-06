@@ -9,33 +9,32 @@
 </head>
 
 <body>
-    <script>
-        
-       function foo(str, array) {
+   <script>
+
+
+
+        function foo(str, array) {
             var myStr = str.toLowerCase();//нижний регистр
             var result = "";//строка для результата
             for (var i = 0; i < myStr.length; i++) {//цикл по строке
                 for (var j = 0; j < array.length; j++) {//цикл по массиву
-                    if ((myStr[i]) === array[j]) {//если символы совподают -
-                        //передаем строку и индекс совпавшего символа
-                        myStr = remove_char(myStr, i)//получаем результат от функции remove_char
+                    if (myStr.charAt(i) === array[j]) {//если символы not совподают
+                        var currentChar = myStr.charAt(i)//передаем срвпавшие символы в переменную
+                        var re = new RegExp(currentChar, 'g');//создаем регулярное выражение c и передаем в переменную
+                        myStr = myStr.replace(re, '')//результат работы метода передаем в переменную
+
                     } else {
                         continue;
                     }
+
                 }
             }
             result = myStr;
             return result;
         }
-        function remove_char(str, char) {//функция выводит символы которых нет во втором аргументе
-            var past1 = str.slice(0, char);//в переменную передаем индексы символов от 0 - 
-            //до символа который находится перед совпавшим, включительно
-            var past2 = str.slice(++char, str.length);//в переменную передаем индексы символов от совпавшего + 1 до конца строки -
-            return (past1 + past2);//возвращает начало и конец строки за исключением совпавших символов
 
-        }
+        console.log(foo('Hello', ['l', 'o']));
 
-        console.log(foo("Hello", ["o"]));
 
     </script>
 </body>
