@@ -11,30 +11,21 @@
 <body>
    <script>
 
-
-
         function foo(str, array) {
-            var myStr = str.toLowerCase();//нижний регистр
-            var result = "";//строка для результата
-            for (var i = 0; i < myStr.length; i++) {//цикл по строке
-                for (var j = 0; j < array.length; j++) {//цикл по массиву
-                    if (myStr.charAt(i) === array[j]) {//если символы not совподают
-                        var currentChar = myStr.charAt(i)//передаем срвпавшие символы в переменную
-                        var re = new RegExp(currentChar, 'g');//создаем регулярное выражение c и передаем в переменную
-                        myStr = myStr.replace(re, '')//результат работы метода передаем в переменную
-
-                    } else {
-                        continue;
-                    }
-
-                }
-            }
-            result = myStr;
-            return result;
+      var strArray = Array.from(str.toLowerCase());
+      var result = '';
+      var newArray = array.concat(array);
+      for (var i = 0; i < newArray.length; i++) {
+        for (var j = 0; j < strArray.length; j++) {
+          if (newArray[i] === strArray[j]) {
+            strArray.splice(j, 1);
+          }
         }
+      }
+      result = strArray.join('');
+      return result;
 
-        console.log(foo('Hello', ['l', 'o']));
-
+    }
 
     </script>
 </body>
